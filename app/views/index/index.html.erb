@@ -1,0 +1,16 @@
+<div class="wrapper">
+    <h1><%= @gameName %></h1>
+    <h3 class="playerWrapper hide">Current player is <a class="player"></a></h3>
+    <div class="connect4wrapper">
+        <% for ul in 0..6 %>
+            <ul class="col col<%=ul%>">
+                <li id="entry" data-col="<%=ul%>" class="entry<%=ul%>"><p>
+                  click here
+                </p></li>
+                <% for li in 0..5 %>
+                    <li data-row="<%=li%>" class="row<%=li+1%>"></li>
+                <% end %>
+            </ul>
+        <% end %>
+    </div>
+</div>

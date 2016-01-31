@@ -1,0 +1,92 @@
+body {
+  background: #888;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, ul, li, ol, div {
+  font-family: monospace;
+}
+
+.wrapper {
+    width: 700px;
+    margin: 0 auto;
+    background: #888;
+}
+
+.playerWrapper a.yellow {
+  color: yellow !important;
+  background: none !important;
+}
+
+.playerWrapper a.red {
+  color: red !important;
+  background: none !important;
+}
+
+.player {
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.connect4wrapper ul.col {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-table;
+}
+
+.connect4wrapper ul.col li#entry {
+  background: #222;
+}
+
+.connect4wrapper ul.col li#entry p {
+  color: #fff;
+  padding: 8px 0 0 0;
+  margin: 0 0 0 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.connect4wrapper ul.col li {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 5px;
+  border: 1px solid #000;
+  background: #fff;
+}
+
+/*
+.connect4wrapper ul.row {
+    list-style: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.connect4wrapper ul.row li {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    display: inline-table;
+}
+
+.connect4wrapper ul li.disabled {
+    background: #e2e2e2;
+}
+
+.connect4wrapper ul li.canAdd {
+    background: #fff;
+    cursor: pointer;
+}*/
+
+.red {
+    background: red !important;
+}
+
+.yellow {
+    background: yellow !important;
+}
+
+.hide {
+    display: none;
+}
