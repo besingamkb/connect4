@@ -48,28 +48,40 @@ TileArray = function(col, player) {
 
 CheckWinner = function(col, row, player) {
   var bucket = [];
-  var hasWinner = null;
+  console.log("col: " + col);
+  console.log("row: " + row);
+  console.log("player: " + player);
 
-  connect4 = function() {
+  array4Checker = function(array) {
+    var a4Counter = 0;
 
+    for (var a4 = 0; array.length > a4; a4++) {
+      a4Counter++;
+      if (array[a4] == player) {
+        if (a4Counter > 3) {
+          //console.log("this is it!!");
+          return true;
+        }
+      } else {
+        a4Counter=0;
+      }
+    }
+    return false;
   }
 
   checkHorizontal = function() {
-    // check left first
-    //if false check rigth
-    for (var a = 0; a < tileArray[col].length; a++) {
-      if (tileArray[a][row-1] == player && tileArray[a][row+1] == row) {
-        bucket.push(tileArray[a]);
-      }
-
-      console.log(tileArray[a]);
+    var hCounter = 0;
+    for (var h = 0; tileArray.length > h; h++) {
+      bucket.push(tileArray[h][row]);
     }
 
-    console.log("bucket"+bucket);
-
+    return array4Checker(bucket);
   }
 
-  checkHorizontal();
+  if (checkHorizontal()) {
+    alert("Player " + player + " wins.");
+  }
+
 }
 
 $("#entry p").click(function(e) {
@@ -80,7 +92,7 @@ $("#entry p").click(function(e) {
 
     if (clickCounter > 6) {
       // game logic checkers
-      CheckWinner(dataCol, tile, currentPlayer);
+      CheckWinner(dataCol, tile-1, currentPlayer);
     }
 
     if (currentPlayer == 1) {
