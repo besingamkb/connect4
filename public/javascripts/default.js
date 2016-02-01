@@ -49,6 +49,7 @@ TileArray = function(col, player) {
 CheckWinner = function(col, row, player) {
   var hBucket = [];
   var vBucket = [];
+  var dBucket = [];
   console.log("col: " + col);
   console.log("row: " + row);
   console.log("player: " + player);
@@ -88,6 +89,18 @@ CheckWinner = function(col, row, player) {
     return array4Checker(vBucket);
   }
 
+  checkDiagonal = function() {
+    console.log("col: " + col + " row: " + row + " player: " + player);
+    for (var r = 0; r < tileArray.length; r++) {
+      for (var c = 0; c < tileArray.length; c++) {
+        for ( var d = 0; d < tileArray.length-col-row; d++) {
+          console.log(tileArray);
+        }
+      }
+      //console.log(dBucket);
+    }
+  }
+
   hasWinner = function(player) {
     alert("Player " + player + " wins.!");
     location.reload();
@@ -97,6 +110,10 @@ CheckWinner = function(col, row, player) {
     hasWinner(player);
   } else if (checkVertical()) {
     hasWinner(player);
+  } else if (checkDiagonal()) {
+
+  } else {
+    // no one wins
   }
 
 }
