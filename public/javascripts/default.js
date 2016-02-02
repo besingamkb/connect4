@@ -49,11 +49,11 @@ TileArray = function(col, player) {
 CheckWinner = function(col, row, player) {
   var hBucket = [];
   var vBucket = [];
-  var dBucket = [];
-  console.log("col: " + col);
-  console.log("row: " + row);
-  console.log("player: " + player);
-
+  var rdBucket = [];
+  var ruBucket = [];
+  var maxRow = tileArray[0].length - 1;
+  var maxCol = tileArray.length -1;
+  console.log("max row: " + maxRow);
   array4Checker = function(array) {
     var a4Counter = 0;
 
@@ -89,16 +89,93 @@ CheckWinner = function(col, row, player) {
     return array4Checker(vBucket);
   }
 
-  checkDiagonal = function() {
+  checkRigthDown = function() {
     console.log("col: " + col + " row: " + row + " player: " + player);
-    for (var r = 0; r < tileArray.length; r++) {
-      for (var c = 0; c < tileArray.length; c++) {
-        for ( var d = 0; d < tileArray.length-col-row; d++) {
-          console.log(tileArray);
+    var decrement = (row >= col)? col: row;
+    var rdCount = 0;
+    var x = row;
+    var y = col;
+    console.log("decrement is " + decrement);
+    while (rdCount < decrement) {
+      x -= 1;
+      y -= 1;
+      rdCount++;
+    }
+
+    var colRowLimit = 0;
+    var rdValue;
+
+    try {
+      if (typeof tileArray[y][x] != "undefined") {
+        while (colRowLimit <= maxRow || colRowLimit <= col && x ) {
+          if (typeof tileArray[y][x] != "undefined") {
+            rdValue = tileArray[y][x];
+          } else {
+            rdValue = 0;
+          }
+          rdBucket.push(rdValue);
+          x += 1;
+          y += 1;
+          colRowLimit++;
         }
       }
-      //console.log(dBucket);
+    } catch (e) {
+      console.log(e.message);
     }
+    return array4Checker(rdBucket);
+  }
+
+  checkRigthUp = function() {
+    console.log("-------------------");
+    console.log("col: " + col + " row: " + row + " player: " + player);
+    //var decrement = (row >= col)? col: row;
+    var justGo = true;
+    var x = row;
+    var y = col;
+
+    while (justGo) {
+      if (y <= col) {
+        if (y >  0 && x < maxRow) {
+          console.log("this");
+          x += 1;
+          y -= 1;
+        } else {
+          justGo = false;
+        }
+      } else {
+        justGo = false;
+      }
+
+    }
+    console.log("x: " + x + " y: " + y);
+
+    // console.log(y + " " + x);
+    //
+    var colRowLimit = 0;
+    var rdValue;
+
+    try {
+      if (typeof tileArray[y][x] != "undefined") {
+        console.log("y and x is defined");
+        while (colRowLimit <= maxRow || colRowLimit <= col && x ) {
+          console.log(tileArray[y][x]);
+          if (typeof tileArray[y][x] != "undefined") {
+            rdValue = tileArray[y][x];
+          } else {
+            rdValue = 0;
+          }
+          ruBucket.push(rdValue);
+          x -= 1;
+          y += 1;
+          colRowLimit++;
+        }
+      }
+    } catch (e) {
+      console.log(e.message);
+    }
+
+    console.log(ruBucket);
+    return array4Checker(ruBucket);
   }
 
   hasWinner = function(player) {
@@ -110,9 +187,11 @@ CheckWinner = function(col, row, player) {
     hasWinner(player);
   } else if (checkVertical()) {
     hasWinner(player);
-  } else if (checkDiagonal()) {
-
-  } else {
+  } else if (checkRigthDown()) {
+    hasWinner(player);
+  } else if (checkRigthUp()) {
+    hasWinner(player);
+  } else{
     // no one wins
   }
 
